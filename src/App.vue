@@ -26,27 +26,7 @@ export default {
     return {
       currentTab: 'timer',
 
-      projects: [
-                {
-                    name: 'Hotel de la bite',
-                    client: 'Borrione S.A.R.L',
-                    colorTag: "#F00",
-                    tasks: [
-                        {name: 'Manger ta mere', time: 8754},
-                        {name: 'Sucer ton pere', time: 69420}
-                    ]
-                },
-
-                {
-                    name: 'Hotel du cul',
-                    client: 'Borrione S.A.R.L',
-                    colorTag: "#00F",
-                    tasks: [
-                        {name: 'Manger ta mere', time: 8754},
-                        {name: 'Sucer ton pere', time: 69420}
-                    ]
-                }
-            ]
+      projects: []
     }
   }
 }
