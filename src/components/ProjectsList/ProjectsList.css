@@ -1,0 +1,46 @@
+h1 {
+    top: 64px;
+    margin: 16px;
+    color: white;
+}
+
+.project {
+    background: #25261D;
+    color: white;
+    margin: 8px;
+    padding: 16px;
+    border-radius: 4px;
+    border-left: #F00 16px solid;
+}
+
+.project p {
+    margin: 0;
+}
+
+.project-name {
+    font-weight: bold;
+}
+
+.project-client {
+    opacity: .8;
+}
+
+.add-project {
+    position: absolute;
+    bottom: 64px;
+    right: 16px;
+    background-color: #3F55C9;
+    color: white;
+    padding: 8px 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: .15s;
+    border-radius: 4px;
+    user-select: none;
+}
+
+.add-project:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px black;
+    transition: .15s;
+}

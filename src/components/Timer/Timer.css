@@ -1,0 +1,51 @@
+#root {
+    text-align: center;
+    color: white;
+}
+
+p {
+    margin: 0;
+}
+
+
+.current-task {
+    position: absolute;
+    top: 10vh;
+    width: 100vw;
+}
+
+#timer {
+    position: absolute;
+    top: 30vh;
+    width: 100vw;
+    font-size: 44pt;
+    padding: 16px 0;
+    background-color: #0A0E08;
+    font-family: 'Roboto Mono';
+    margin: 0;
+    color: white;
+}
+
+.control-buttons {
+    position: absolute;
+    top: 55vh;
+    text-align: center;
+    width: 100vw;
+    margin-top: 32px;
+}
+
+.btn {
+    width: 78px;
+    margin: 0 16px;
+    transition: .15s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    transition: .15s;
+}
+
+.btn:active {
+    transform: scale(.7);
+    transition: .15s;
+}
