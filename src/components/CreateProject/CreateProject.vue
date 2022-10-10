@@ -28,7 +28,8 @@
 
             </form>
             
-            <button @click="createProject">+ CREATE</button>
+            <button @click="createProject" id="create">+ CREATE</button>
+            <button @click="cancel" id="cancel">CANCEL</button>
         </div>
 
     </div>
@@ -60,6 +61,10 @@ export default {
                 tasks: []
             });
 
+            this.$parent.isCreateProjectWindowVisible = false;
+        },
+
+        cancel () {
             this.$parent.isCreateProjectWindowVisible = false;
         }
     }

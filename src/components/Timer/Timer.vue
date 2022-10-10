@@ -5,7 +5,7 @@
 
         <div class="current-task">
             <p style="font-weight: light; opacity: .6">Working on</p>
-            <p style="font-weight: bold;">Lorem - Ipsum - Dolor</p>
+            <p style="font-weight: bold;">{{ project }} - {{ task }}</p>
         </div>
 
         <p id="timer">{{ formatTime() }}</p>
@@ -24,6 +24,8 @@ import StopConfirmation from '../StopConfirmation/StopConfirmation.vue';
 
 export default {
     name: "Timer",
+
+    props: ["project", "task"],
 
     components: {
         'stop-confirmation': StopConfirmation
@@ -78,8 +80,11 @@ export default {
         resetTimer () {
             clearInterval(this.timer);
             this.isRunning = false;
-            this.elapsedTime = 0;
             this.buttonSource = this.buttonStart;
+            
+            // bro...
+            this.$parent.projects[this.$parent.currentTask.project].tasks[this.$parent.currentTask.task].elapsedTime += this.elapsedTime;
+            this.elapsedTime = 0;
         },
 
         formatTime () {

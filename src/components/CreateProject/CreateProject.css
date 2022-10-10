@@ -63,7 +63,22 @@ input[type=text]:focus {
     transition: .15s;
 }
 
-button {
+#cancel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #CF2E2E;
+    color: white;
+    padding: 8px 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: .15s;
+    border-radius: 4px;
+    user-select: none;
+    border: none;
+}
+
+#create {
     position: absolute;
     bottom: 0;
     right: 0;

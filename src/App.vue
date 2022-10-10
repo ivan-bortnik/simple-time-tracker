@@ -1,10 +1,10 @@
 <template>
   <div id="app">
 
-    <timer v-if="currentTab == 'timer'"></timer>
+    <timer v-if="currentTab == 'timer'"
+    :project="projects[currentTask.project].name"
+    :task="projects[currentTask.project].tasks[currentTask.task].name"></timer>
     <projects-list v-if="currentTab == 'projects'" :projects="projects"></projects-list>
-
-    
 
     <tab-bar></tab-bar>
 
@@ -26,7 +26,22 @@ export default {
     return {
       currentTab: 'timer',
 
-      projects: []
+      currentTask: {
+        project: 0,
+        task: 0
+      },
+
+      projects: [
+        {
+          name: "Lorem bite",
+          client: "Dolor",
+          colorTag: 1,
+          tasks: [
+            { name: "Sit amet consequitum", elapsedTime: 0 },
+            { name: "Sucer des queues", elapsedTime: 0 }
+          ]
+        }
+      ]
     }
   }
 }
@@ -41,5 +56,6 @@ export default {
   width: 100vw;
   height: 100vh;
   font-family: 'Nunito';
+  overflow: hidden;
 }
 </style>

@@ -3,13 +3,27 @@
 
         <h1>Projects</h1>
 
-        <div
-        class="project"
-        v-for="obj in projects"
-        :key="obj.name"
-        :style="{'border-color': getColor(obj.colorTag)}">
-            <p class="project-name">{{ obj.name }}</p>
-            <p class="project-client">{{ obj.client }}</p>
+
+        <div class="container">
+            <div
+            class="project"
+            v-for="(obj, projectID) in projects"
+            :key="projectID"
+            :style="{'border-color': getColor(obj.colorTag)}">
+                <p class="project-name">{{ obj.name }}</p>
+                <p class="project-client">{{ obj.client }}</p>
+    
+                <ul class="tasks">
+                    <li v-for="(task, taskID) in obj.tasks" :key="taskID">
+                        <span class="elapsed-time" @click="setTask(projectID, taskID)">{{ formatTime(task.elapsedTime) }}</span>
+                        <input type="text" v-model="task.name" placeholder="Task name">
+                    </li>
+    
+                    <li class="add-task" @click="addTask(projectID)">
+                        + Add Task
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <p class="add-project" @click="isCreateProjectWindowVisible = true">+ ADD PROJECT</p>
@@ -28,12 +42,31 @@ export default {
     },
     data () {
         return {
-            isCreateProjectWindowVisible: false
+            isCreateProjectWindowVisible: false,
         }
     },
     methods: {
         getColor (tagID) {
+            // Simply returns the hex value from the premade pallete
+            // Colors are RED; GREEN; BLUE; PURPLE; YELLOW; WHITE
             return ["#b52616", "#46b516", "#1650b5", "#a10e97", "#e8c70c", "#ffffff"][tagID];
+        },
+
+        formatTime (time) {
+            // Return elapsed time in a string in a HH:MM:SS format
+            let hrs = `${Math.floor(time / 3600)}`.padStart(2, '0');
+            let min = `${Math.floor(time % 3600 / 60)}`.padStart(2, '0');
+            let sec = `${time % 60}`.padStart(2, '0');
+
+            return `${hrs}:${min}:${sec}`;
+        },
+        
+        addTask (idx) {
+            this.projects[idx].tasks.push({name: "Task", elapsedTime: 0});
+        },
+
+        setTask (projectIdx, taskIdx) {
+            this.$parent.currentTask = { project: projectIdx, task: taskIdx };
         }
     }
 }
