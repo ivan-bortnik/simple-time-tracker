@@ -31,17 +31,23 @@ export default {
         task: 0
       },
 
-      projects: [
-        {
-          name: "Lorem bite",
-          client: "Dolor",
-          colorTag: 1,
-          tasks: [
-            { name: "Sit amet consequitum", elapsedTime: 0 },
-            { name: "Sucer des queues", elapsedTime: 0 }
-          ]
-        }
-      ]
+      projects: []
+    }
+  },
+
+  created () {
+    this.load();
+  },
+
+  methods: {
+    load () {
+      let dataAsString = localStorage.getItem('projects');
+      this.projects = JSON.parse(dataAsString);
+    },
+
+    save () {
+      let dataAsString =  JSON.stringify(this.projects);
+      localStorage.setItem('projects', dataAsString);
     }
   }
 }

@@ -85,6 +85,9 @@ export default {
             // bro...
             this.$parent.projects[this.$parent.currentTask.project].tasks[this.$parent.currentTask.task].elapsedTime += this.elapsedTime;
             this.elapsedTime = 0;
+
+            // Save
+            this.$parent.save();
         },
 
         formatTime () {

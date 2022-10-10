@@ -84,3 +84,14 @@ li input:focus {
     margin: 0 8px 0 0;
     border-radius: 4px;
 }
+
+#total-time {
+    position: relative;
+    font-weight: bold;
+    font-family: 'Roboto Mono';
+    background-color: #161810;
+    padding: 8px 12px;
+    border-radius: 4px;
+    right: 0;
+    float: right;
+}
