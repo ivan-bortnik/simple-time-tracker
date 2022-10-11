@@ -1,7 +1,9 @@
 <template>
   <div id="app">
 
-    <timer v-if="currentTab == 'timer'"
+    <p id="no-project" v-if="projects.length == 0">You don't have any project to work on</p>
+    
+    <timer v-if="currentTab == 'timer' && projects.length > 0"
     :project="projects[currentTask.project].name"
     :task="projects[currentTask.project].tasks[currentTask.task].name"></timer>
     <projects-list v-if="currentTab == 'projects'" :projects="projects"></projects-list>
@@ -41,8 +43,10 @@ export default {
 
   methods: {
     load () {
-      let dataAsString = localStorage.getItem('projects');
-      this.projects = JSON.parse(dataAsString);
+      if (localStorage.getItem('project') !== null) {
+        let dataAsString = localStorage.getItem('projects');
+        this.projects = JSON.parse(dataAsString);
+      }
     },
 
     save () {
@@ -63,5 +67,15 @@ export default {
   height: 100vh;
   font-family: 'Nunito';
   overflow: hidden;
+}
+
+#no-project {
+  position: absolute;
+  width: 100vw;
+  color: #999;
+  font-size: 24pt;
+  font-weight: bolder;
+  text-align: center;
+  margin: 30vh 0;
 }
 </style>

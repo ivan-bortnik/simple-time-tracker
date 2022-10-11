@@ -58,7 +58,7 @@ export default {
                 name: name,
                 client: client,
                 colorTag: tag,
-                tasks: []
+                tasks: [{ name: "First task", elapsedTime: 0 }]
             });
 
             this.$parent.isCreateProjectWindowVisible = false;
