@@ -5,7 +5,7 @@
 
         <div class="current-task">
             <p style="font-weight: light; opacity: .6">Working on</p>
-            <p style="font-weight: bold;">{{ project }} - {{ task }}</p>
+            <p style="font-weight: bold;">{{ workingon }}</p>
         </div>
 
         <p id="timer">{{ formatTime() }}</p>
@@ -25,7 +25,7 @@ import StopConfirmation from '../StopConfirmation/StopConfirmation.vue';
 export default {
     name: "Timer",
 
-    props: ["project", "task"],
+    props: ["workingon"],
 
     components: {
         'stop-confirmation': StopConfirmation
@@ -82,9 +82,12 @@ export default {
             this.isRunning = false;
             this.buttonSource = this.buttonStart;
             
+            this.$parent.saveToHistory(this.elapsedTime);
+            
             // bro...
             this.$parent.projects[this.$parent.currentTask.project].tasks[this.$parent.currentTask.task].elapsedTime += this.elapsedTime;
             this.elapsedTime = 0;
+
 
             // Save
             this.$parent.save();

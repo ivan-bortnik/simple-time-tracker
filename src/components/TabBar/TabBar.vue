@@ -11,7 +11,7 @@
 
         <button class="tab"
         :style="[selectedTab == 'history'?{'background-color':'#25261D'}:{'background-color':'#0A0E08'}]"
-        @click="selectedTab = 'history'"><img src="../../assets/history.png" alt=""></button>
+        @click="$parent.currentTab = 'history'; selectedTab = 'history'"><img src="../../assets/history.png" alt=""></button>
 
     </div>
 </template>
@@ -39,6 +39,7 @@ export default {
         text-align: center;
         display: flex;
         justify-content: center;
+        z-index: 999;
     }
 
     button {

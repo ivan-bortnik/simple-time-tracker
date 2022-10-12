@@ -53,8 +53,13 @@ export default {
 
             // TODO: Validate data
 
+            // Assign ID
+            let id = this.$parent.projects.at(-1).id + 1;
+            // TODO: Check compatibility of at() method
+
             // Send data
-            this.$parent.$parent.projects.push({
+            this.$parent.projects.push({
+                id,
                 name: name,
                 client: client,
                 colorTag: tag,

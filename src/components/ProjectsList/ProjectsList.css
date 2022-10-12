@@ -1,13 +1,15 @@
 h1 {
-    top: 64px;
-    margin: 16px;
+    margin: 0;
+    padding: 16px;
     color: white;
 }
 
 .container {
-    height: calc(100vw - 76px);
-    margin-bottom: 64px;
+    position: inherit;
+    height: calc(100vh - 140px);   
     overflow: scroll;
+    bottom: 0;
+    padding-bottom: 64px;
 }
 
 .project {
@@ -85,7 +87,7 @@ li input:focus {
     border-radius: 4px;
 }
 
-#total-time {
+.total-time {
     position: relative;
     font-weight: bold;
     font-family: 'Roboto Mono';
@@ -94,4 +96,5 @@ li input:focus {
     border-radius: 4px;
     right: 0;
     float: right;
+    display: block;
 }

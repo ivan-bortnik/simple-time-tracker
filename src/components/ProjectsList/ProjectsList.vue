@@ -10,7 +10,7 @@
             v-for="(obj, projectID) in projects"
             :key="projectID"
             :style="{'border-color': getColor(obj.colorTag)}">
-                <p id="total-time">{{ formatTime(getTotalTime(projectID)) }}</p>
+                <p class="total-time">{{ formatTime(getTotalTime(projectID)) }}</p>
 
                 <p class="project-name">{{ obj.name }}</p>
                 <p class="project-client">{{ obj.client }}</p>
@@ -64,7 +64,9 @@ export default {
         },
         
         addTask (idx) {
-            this.projects[idx].tasks.push({name: "Task", elapsedTime: 0});
+            // Assign ID
+            let id = this.projects[idx].tasks.at(-1) + 1;
+            this.projects[idx].tasks.push({id, name: "Task", elapsedTime: 0});
         },
 
         setTask (projectIdx, taskIdx) {
