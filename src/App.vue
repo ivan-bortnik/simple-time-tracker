@@ -92,7 +92,7 @@ export default {
 
       const formattedDate = dd + '/' + mm + '/' + yyyy;
       
-      this.history.push({
+      this.history.unshift({
         projectID:  this.projects[this.currentTask.project].id,
         taskID: this.projects[this.currentTask.project].tasks[this.currentTask.task].id,
         date: formattedDate,

@@ -6,7 +6,10 @@
         <div class="container">
             <ul>
                 <li v-for="(item, key) in $parent.history" :key="key">
-                    <span class="data">{{ item.date }}</span> <span class="time">{{ formatTime(item.elapsedTime) }}</span> {{item.name}}
+                    <span class="name">{{ item.name }}</span>
+                    <br>
+                    <span class="time">{{ formatTime(item.elapsedTime) }}</span>
+                    <span class="date">{{ item.date }}</span>
                 </li>
             </ul>
         </div>
