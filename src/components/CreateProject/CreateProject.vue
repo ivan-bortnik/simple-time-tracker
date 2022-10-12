@@ -52,9 +52,12 @@ export default {
             let tag = parseInt(this.colorTag);
 
             // TODO: Validate data
-
+            
             // Assign ID
-            let id = this.$parent.projects.at(-1).id + 1;
+            let id = 0;
+            if (this.$parent.projects.length > 0) {
+                let id = this.$parent.projects.at(-1).id + 1;
+            }
             // TODO: Check compatibility of at() method
 
             // Send data
@@ -63,7 +66,7 @@ export default {
                 name: name,
                 client: client,
                 colorTag: tag,
-                tasks: [{ name: "First task", elapsedTime: 0 }]
+                tasks: [{ id: 0, name: "First task", elapsedTime: 0 }]
             });
 
             this.$parent.isCreateProjectWindowVisible = false;

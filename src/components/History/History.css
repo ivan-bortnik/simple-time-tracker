@@ -35,6 +35,12 @@ li {
     padding: 16px;
     border-radius: 4px;
     border-left: #F00 16px solid;
+    transition: .15s;
+}
+
+li:hover {
+    transform: scale(1.04);
+    transition: .15s;
 }
 
 .name {

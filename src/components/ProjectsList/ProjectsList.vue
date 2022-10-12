@@ -65,12 +65,14 @@ export default {
         
         addTask (idx) {
             // Assign ID
-            let id = this.projects[idx].tasks.at(-1) + 1;
-            this.projects[idx].tasks.push({id, name: "Task", elapsedTime: 0});
+            let id = this.projects[idx].tasks.at(-1).id + 1;
+            console.log(id);
+            this.projects[idx].tasks.push({id: id, name: "Task", elapsedTime: 0});
         },
 
         setTask (projectIdx, taskIdx) {
             this.$parent.currentTask = { project: projectIdx, task: taskIdx };
+            this.$parent.currentTab = 'timer';
         },
 
         getTotalTime (projectIdx) {

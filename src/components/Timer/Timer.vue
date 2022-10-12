@@ -65,6 +65,8 @@ export default {
             this.timer = setInterval(() => {
                 this.elapsedTime++;
             }, 1000);
+          
+            this.$parent.isTimerRunning = true;
         },
 
         pause () {
@@ -83,6 +85,7 @@ export default {
             this.buttonSource = this.buttonStart;
             
             this.$parent.saveToHistory(this.elapsedTime);
+            this.$parent.isTimerRunning = false;
             
             // bro...
             this.$parent.projects[this.$parent.currentTask.project].tasks[this.$parent.currentTask.task].elapsedTime += this.elapsedTime;

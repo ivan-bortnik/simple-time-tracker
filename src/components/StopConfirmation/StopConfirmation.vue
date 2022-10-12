@@ -2,7 +2,7 @@
 <div id="root">
 
     <div class="popup">
-        <h2>rly?</h2>
+        <h2>Stop working on<br>{{ $parent.workingon }}?</h2>
         <button style="background-color: #34870B" @click="confirm">YES</button>
         <button style="background-color: #CF2E2E" @click="cancel">CANCEL</button>
     </div>
@@ -57,10 +57,12 @@ export default {
         margin: 16px;
         border: none;
         border-radius: 4px;
-        padding: 8px;
-        width: 64px;
+        padding: 8px 16px;
+        width: 128px;
         color: white;
         transition: .15s;
+        font-family: 'Nunito';
+        font-weight: bold;
     }
 
     button:hover {

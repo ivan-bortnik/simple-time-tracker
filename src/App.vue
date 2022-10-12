@@ -8,7 +8,7 @@
     <projects-list v-if="currentTab == 'projects'" :projects="projects"></projects-list>
     <history v-if="currentTab == 'history'"></history>
 
-    <tab-bar></tab-bar>
+    <tab-bar v-if="!isTimerRunning"></tab-bar>
 
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
   data () {
     return {
       currentTab: 'timer',
+      isTimerRunning: false,
       
       // Currently, those refers to the index of the task or project in
       // the projects array, in the future, they should refer to their 
@@ -38,29 +39,9 @@ export default {
         task: 0
       },
 
-      projects: [
-        {
-          id: 0,
-          name: 'Test 1',
-          client: 'Client 1',
-          colorTag: 0,
-          tasks: [
-            { id: 0, name: 'Task 1', elapsedTime: 128}
-          ]
-        }
-      ],
+      projects: [],
 
-      history: [
-        {
-          projectID: 0,
-          taskID: 0,
-          date: '10/11/2022',
-          // The date is directly computed and stored as a string
-          // to avoid unnescssary calculations afterwards
-          elapsedTime: 128,
-          name: 'Test 1 - Task 1'
-        }
-      ]
+      history: []
     }
   },
 
@@ -97,6 +78,7 @@ export default {
         taskID: this.projects[this.currentTask.project].tasks[this.currentTask.task].id,
         date: formattedDate,
         elapsedTime: elapsedTime,
+        colorTag: this.projects[this.currentTask.project].colorTag,
         name: `${this.projects[this.currentTask.project].name} - ${this.projects[this.currentTask.project].tasks[this.currentTask.task].name}`
       })
     }
