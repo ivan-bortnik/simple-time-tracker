@@ -15,6 +15,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 550,
     height: 600,
+    title: 'Time Tracker',
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
