@@ -5,6 +5,33 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+const { ipcMain } = require('electron');
+
+import fs from 'fs';
+import { resolve } from 'path'
+
+ipcMain.handle('save-user-data', async (event, {data}) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFileSync('storage.json', data, (err) => {
+      if(err){
+          console.log("An error ocurred creating the file "+ err.message);
+          return false;
+      }      
+      console.log("The file has been succesfully saved");
+      return true;
+    });
+  })
+});
+
+
+ipcMain.handle('load-user-data', async (event) => {
+
+  const userData = fs.readFileSync('storage.json', 'utf8');
+  console.log(userData);
+  return userData;
+
+});
+
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -17,11 +44,10 @@ async function createWindow() {
     height: 600,
     title: 'Time Tracker',
     webPreferences: {
-      
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: true,
+      contextIsolation: false
     },
     resizable: false
   })
@@ -64,7 +90,8 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
-  createWindow()
+  
+  createWindow();
 })
 
 // Exit cleanly on request from parent process in development mode.
@@ -81,3 +108,4 @@ if (isDevelopment) {
     })
   }
 }
+

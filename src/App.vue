@@ -19,6 +19,9 @@ import Timer from './components/Timer/Timer.vue';
 import ProjectsList from './components/ProjectsList/ProjectsList.vue';
 import History from './components/History/History.vue';
 
+
+import { ipcRenderer } from 'electron';
+
 export default {
   components: {
     'tab-bar': TabBar,
@@ -45,21 +48,28 @@ export default {
     }
   },
 
-  created () {
+  mounted () {
+    //console.log(fs);
     this.load();
   },
 
+
   methods: {
-    load () {
-      if (localStorage.getItem('project') !== null) {
-        let dataAsString = localStorage.getItem('projects');
-        this.projects = JSON.parse(dataAsString);
-      }
+    load() {       
+      ipcRenderer.invoke('load-user-data').then((result) => {
+        let userData = JSON.parse(result);
+        console.log(userData);
+        this.projects = userData.projects;
+        this.history = userData.history;
+      })
     },
 
-    save () {
-      let dataAsString =  JSON.stringify(this.projects);
-      localStorage.setItem('projects', dataAsString);
+    async save() {
+      const data = JSON.stringify({
+        projects: this.projects,
+        history: this.history
+      }); // load it from your source            
+      ipcRenderer.invoke('save-user-data', { data });
     },
 
     saveToHistory (elapsedTime) {

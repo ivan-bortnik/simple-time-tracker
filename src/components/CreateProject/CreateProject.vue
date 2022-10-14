@@ -68,7 +68,7 @@ export default {
                 colorTag: tag,
                 tasks: [{ id: 0, name: "First task", elapsedTime: 0 }]
             });
-
+            this.$parent.$parent.save();
             this.$parent.isCreateProjectWindowVisible = false;
         },
 
